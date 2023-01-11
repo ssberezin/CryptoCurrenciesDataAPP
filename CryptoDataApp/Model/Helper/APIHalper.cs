@@ -14,7 +14,7 @@ namespace CryptoDataApp.Model.Helper
         public static void InitClient()
         {
             APIClient = new HttpClient();
-            APIClient.BaseAddress = new Uri("");
+            //APIClient.BaseAddress = new Uri("");
             //APIClient.BaseAddress = new Uri("https://www.cryptingup.com/apidoc/");
             APIClient.DefaultRequestHeaders.Accept.Clear();
             APIClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
