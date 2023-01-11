@@ -18,9 +18,9 @@ namespace CryptoDataApp.Model
         public double? Change_7d { get; set; }
     }
 
-    public class AllCrypto
+    public class Assets
     { 
-        public CryptoCurModel[] Items { get; set; }
+        public Dictionary <string, CryptoCurModel> Items { get; set; }
     }
 
 
