@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Projects\CryptoCurrenciesDataAPP\CryptoDataApp\obj\Debug\net6.0-windows\
+E:\Programming\WPF\CryptocurrenciesData\CryptocurrenciesData\CryptoDataApp\obj\Debug\net6.0-windows\
 CryptoDataApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\Projects\CryptoCurrenciesDataAPP\CryptoDataApp\App.xaml
+E:\Programming\WPF\CryptocurrenciesData\CryptocurrenciesData\CryptoDataApp\App.xaml
 11407045341
 
-11-832821655
-199-1274041830
+10-1529644494
+199-1959480753
 MainWindow.xaml;
 
 False

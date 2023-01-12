@@ -20,7 +20,7 @@ namespace CryptoDataApp.Model
 
     public class Assets
     { 
-        public Dictionary <string, CryptoCurModel> Items { get; set; }
+        public List < CryptoCurModel> Items { get; set; }
     }
 
 
