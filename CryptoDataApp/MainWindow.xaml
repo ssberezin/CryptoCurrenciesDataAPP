@@ -3,10 +3,52 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CryptoDataApp"
+        xmlns:local="clr-namespace:CryptoDataApp" xmlns:viewmodel="clr-namespace:CryptoDataApp.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
+        
+        Loaded="WindowLoaded"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="YellowGreen" BorderThickness="4" Grid.Row="1">
+
+            <DataGrid x:Name="GridClients" 
+                             ItemsSource="{Binding AssetsCol}" 
+                              SelectedItem="{Binding  SelectedItemLeft}"                                          
+                              AutoGenerateColumns="False" SelectionMode="Single"
+                              IsReadOnly="True" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <DataGrid.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick"
+                                         CommandParameter="{Binding ElementName=GridAuthors, Path=SelectedItem}"
+                                         Command="{Binding CallClientInfoCommand}"/>
+                </DataGrid.InputBindings>
+                <!--<DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Исключить из списка" Command="{Binding ExcludeRecordCommand}"/>
+                            <MenuItem Header="Оплатить"                                                             
+                              Command="{Binding PayOneCommand}"/>
+                            <MenuItem Header="Подробности" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>-->
+                <!--all the binding elements of the DataGrid element can be found in the class "MainViewModel.cs"-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="0.25*" Binding="{Binding Asset_id, UpdateSourceTrigger=PropertyChanged}"  Header="Asset Id" />
+                    <DataGridTextColumn Width="0.35*" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Header="Asset name"/>
+                    <DataGridTextColumn Width="0.35*" Binding="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Header="Prise, USD"/>
+                    <DataGridTextColumn Width="0.25*" Binding="{Binding ClientDept}" Header="Общий долг"/>
+
+                    <DataGridTextColumn Width="0.25*" Binding="{Binding YesNoBlackList}" Header="В черном списке?"/>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+
+        </Border>
 
     </Grid>
 </Window>

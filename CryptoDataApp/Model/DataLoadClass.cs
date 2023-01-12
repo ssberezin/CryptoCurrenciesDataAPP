@@ -15,38 +15,35 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.ComponentModel;
 using System.IO;
 using System.Net.Http.Headers;
+using System.Collections;
+
 
 
 //https://www.youtube.com/watch?v=aWePkE2ReGw&ab_channel=IAmTimCorey
 //29 min stoped
 namespace CryptoDataApp.Model
+
 {
-    public  class DataLoadClass
+  
+
+
+    public class DataLoadClass
     {
       
-        public static async Task <ObservableCollection<CryptoCurModel>> LoadCryptoCurencysData()
-        {
-
-           
+        public static async Task <ObservableCollection<Asset>> LoadCryptoCurencysData()
+        {           
 
             string url = "https://cryptingup.com/api/assets?size=10";
             //string url = "https://cryptingup.com/api/assets/BTC";
 
             using (HttpResponseMessage response = await APIHalper.APIClient.GetAsync(url))
             {
+                
                 if (response.IsSuccessStatusCode)
                 {                    
-                    string responseBody = await response.Content.ReadAsStringAsync();                  
-
-                   
-                    var item = JsonSerializer.Deserialize<List<CryptoCurModel>>(responseBody);
-
-                    ObservableCollection<CryptoCurModel> cryptoModelColl = new ObservableCollection<CryptoCurModel>(); ;
-                    //foreach (var item in lst)
-                    //{
-                    //    cryptoModelColl.Add(item);
-                    //}
-                    return cryptoModelColl;
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    Root item = JsonConvert.DeserializeObject<Root>(responseBody);
+                    return item.Assets;
                 }
                 else
                     throw new Exception(response.ReasonPhrase);
@@ -54,5 +51,7 @@ namespace CryptoDataApp.Model
 
 
         }
+
+       
     }
 }

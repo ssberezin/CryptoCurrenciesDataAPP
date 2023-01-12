@@ -24,7 +24,19 @@ namespace CryptoDataApp
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+           // DataContext = new MainViewModel();
+
+
         }
+        //mb here there is smp
+        //https://www.youtube.com/watch?v=0SCKUine6tY&ab_channel=SingletonSean
+        private async void WindowLoaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = new MainViewModel();            
+            await ((MainViewModel)DataContext).ItinAssets();
+        }
+
+
+
     }
 }

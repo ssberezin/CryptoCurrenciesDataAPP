@@ -9,21 +9,44 @@ using System.Threading.Tasks;
 
 namespace CryptoDataApp.ViewModel
 {
-    public class MainViewModel
+    public class MainViewModel : ObservableObject
     {
-        public ObservableCollection <CryptoCurModel> Assets { get; set; }
-        public MainViewModel()
+        public ObservableCollection <Asset> AssetsCol { get; set; }
+
+        private Asset selectedItemLeft;
+        public Asset SelectedItemLeft
+
         {
-            APIHalper.InitClient();
-            ItinAssets();
-
-
-
+            get { return selectedItemLeft; }
+            set
+            {
+                if (selectedItemLeft != value)
+                {
+                    selectedItemLeft = value;
+                    OnPropertyChanged(nameof(selectedItemLeft));
+                }
+            }
         }
 
-        private async void ItinAssets()
+
+        public  MainViewModel()
         {
-            Assets = await DataLoadClass.LoadCryptoCurencysData();
+            
+            //ItinAssets();
+            
+           // Task.WaitAll(new Task[] { Task.Delay(2000) });
+           //  string name = SelectedItemLeft.Name;
+        }
+
+
+
+
+        public async Task  ItinAssets()
+        {
+            APIHalper.InitClient();
+            //AssetsCol = new ObservableCollection<Asset>();
+            AssetsCol = await DataLoadClass.LoadCryptoCurencysData();
+            SelectedItemLeft = AssetsCol[0];
         }
 
 
